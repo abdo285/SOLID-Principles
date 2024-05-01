@@ -24,7 +24,7 @@ Each principle addresses a specific aspect of software design, contributing to b
 
 4. **Scalability**: A SOLID design lays a solid foundation for scalability. As the system grows, adhering to SOLID principles helps prevent architectural issues and maintain performance, even as the codebase expands.
 
-## Solution Explanation : Singkle Responsibilty 
+## Solution Explanation : Single Responsibilty 
 
 ### Problem Statement
 
@@ -41,6 +41,20 @@ The solution refactors the code by separating each responsibility into its own c
 The `Employee` class now serves as a coordinator, delegating tasks to the appropriate classes. This adheres to the Single Responsibility Principle, ensuring each class has a single reason to change.
 
 ## Solution Explanation : open closed principle 
+
+### Problem Statement
+
+The initial `PaymentProcessor` class violates the OCP by tightly coupling payment processing logic for different payment types within a single method. Adding new payment types would require modifying the existing class, which is not desirable.
+
+
+### Refactoring with OCP
+
+To implimint to the OCP, we introduce an interface `IPayment`, representing a contract for processing payments. Each payment type implements this interface and provides its own implementation of the `ProcessPayment` method.
+
+1. **IPayment Interface**: Defines the contract for payment processing.
+2. **Payment Class**: Represents a payment transaction and accepts an implementation of `IPayment` along with the amount to be paid. It delegates the payment processing to the provided implementation of `IPayment`.
+3. **Payment Processor Classes**: `CreditCardPayment`, `PayPalPayment`, and `BankTransferPayment` implement the `IPayment` interface and provide specific logic for processing each payment type.
+
 
  
 
